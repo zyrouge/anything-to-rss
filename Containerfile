@@ -2,6 +2,7 @@ FROM golang:1.23-alpine as build
 
 WORKDIR /usr/app
 
+COPY go.mod .
 COPY main.go .
 COPY internal internal
 RUN go build -o ./dist/anything-to-rss .
