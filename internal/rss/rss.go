@@ -21,8 +21,9 @@ type RssXmlChannel struct {
 
 type RssXmlChannelItem struct {
 	Title       string                   `xml:"title"`
-	Link        string                   `xml:"link"`
 	Description string                   `xml:"description"`
+	Author      string                   `xml:"author"`
+	Link        string                   `xml:"link"`
 	PubDate     RssXmlChannelItemPubDate `xml:"pubDate"`
 }
 

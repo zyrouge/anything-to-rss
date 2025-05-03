@@ -32,9 +32,10 @@ type FetchDockerHubTagsOutputData struct {
 }
 
 type FetchDockerHubTagsOutputDataResult struct {
-	Name        string    `json:"name"`
-	Digest      string    `json:"digest"`
-	LastUpdated time.Time `json:"last_updated"`
+	Name                string    `json:"name"`
+	Digest              string    `json:"digest"`
+	LastUpdaterUsername string    `json:"last_updater_username"`
+	LastUpdated         time.Time `json:"last_updated"`
 }
 
 func (output *FetchDockerHubTagsOutput) Rss() *rss.RssXml {
@@ -46,6 +47,7 @@ func (output *FetchDockerHubTagsOutput) Rss() *rss.RssXml {
 		item := rss.RssXmlChannelItem{
 			Title:       x.Name,
 			Description: fmt.Sprintf("%s/%s:%s", output.Input.Owner, output.Input.Repository, x.Name),
+			Author:      x.LastUpdaterUsername,
 			Link:        fmt.Sprintf("%s/layers/%s/%s/%s/images/%s", DockerHubBaseUrl, output.Input.Owner, output.Input.Repository, x.Name, x.Digest),
 			PubDate:     rss.MakeRssXmlChannelItemPubDate(x.LastUpdated),
 		}

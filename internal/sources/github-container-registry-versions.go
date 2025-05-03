@@ -59,6 +59,7 @@ func (output *FetchGitHubContainerRegistryVersionsOutput) Rss() *rss.RssXml {
 		item := rss.RssXmlChannelItem{
 			Title:       *tag,
 			Description: fmt.Sprintf("%s/%s:%s", output.Input.Owner, output.Input.Repository, *tag),
+			Author:      output.Input.Owner,
 			Link:        x.HtmlUrl,
 			PubDate:     rss.MakeRssXmlChannelItemPubDate(x.CreatedAt),
 		}
